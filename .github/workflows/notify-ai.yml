@@ -3,9 +3,9 @@ name: Notify AI Translation
 on:
   push:
     branches:
-      - ai-translation   # your actual branch here
+      - ai-translation
     paths:
-      - 'js/**'          # only if JS files changed
+      - 'js/**'
 
 jobs:
   notify-ai:
@@ -13,8 +13,21 @@ jobs:
     steps:
       - name: Trigger AI translation repo
         run: |
-          curl -X POST \
+          echo "Dispatching to AI repo..."
+
+          response=$(curl -s -w "%{http_code}" -o response_body.txt -X POST \
             -H "Authorization: token ${{ secrets.AI_REPO_PAT }}" \
             -H "Accept: application/vnd.github.v3+json" \
             https://api.github.com/repos/ac-mmi/ai-translations/dispatches \
-            -d '{"event_type": "update-from-musicblocks"}'
+            -d '{"event_type": "update-from-musicblocks"}')
+
+          echo "HTTP status code: $response"
+          echo "Response body:"
+          cat response_body.txt
+
+          if [ "$response" != "204" ]; then
+            echo "❌ Dispatch failed"
+            exit 1
+          else
+            echo "✅ Dispatch succeeded"
+          fi
