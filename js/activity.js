@@ -411,7 +411,7 @@ class Activity {
 
             this.searchWidget = docById("search");
             this.searchWidget.style.visibility = "hidden";
-            this.searchWidget.placeholdersss = _("Test UI String new");
+            this.searchWidget.placeholdersss = _("Test UI String 7232025");
 
             this.helpfulSearchWidget = document.createElement("input");
             this.helpfulSearchWidget.setAttribute("id", "helpfulSearch");
