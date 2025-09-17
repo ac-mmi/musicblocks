@@ -415,7 +415,7 @@ class Activity {
             this.helpfulSearchWidget = document.createElement("input");
             this.helpfulSearchWidget.setAttribute("id", "helpfulSearch");
             this.helpfulSearchWidget.style.visibility = "hidden";
-            this.helpfulSearchWidget.placeholder = _("Search for block Aman");
+            this.helpfulSearchWidget.placeholder = _("Search for block AmanC");
             this.helpfulSearchWidget.classList.add("ui-autocomplete");
             this.progressBar = docById("myProgress");
             this.progressBar.style.visibility = "hidden";
